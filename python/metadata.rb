@@ -26,7 +26,6 @@ attribute "python/install_method",
     :description => "The method to use when installing Python.",
     :required => "required",
     :choice => install_methods,
-    :default => '',
     :recipes => ["python::default"]
 
 attribute "python/pip/py_version",
