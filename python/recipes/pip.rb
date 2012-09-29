@@ -18,7 +18,7 @@
 # limitations under the License.
 #
 
-# Ubuntu's python-setuptools, python-pip and python-virtualenv packages 
+# Ubuntu's python-setuptools, python-pip and python-virtualenv packages
 # are broken...this feels like Rubygems!
 # http://stackoverflow.com/questions/4324558/whats-the-proper-way-to-install-pip-virtualenv-and-distribute-for-python
 # https://bitbucket.org/ianb/pip/issue/104/pip-uninstall-on-ubuntu-linux
@@ -28,7 +28,7 @@ remote_file "#{Chef::Config[:file_cache_path]}/distribute_setup.py" do
   not_if "which pip"
 end
 
-use_version = node['python']['distribute_install_py_version']
+use_version = node[:python][:pip][:py_version]
 
 bash "install-pip" do
   cwd Chef::Config[:file_cache_path]

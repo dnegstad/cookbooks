@@ -18,12 +18,12 @@
 # limitations under the License.
 #
 
-configure_options = node['python']['configure_options'].join(" ")
+configure_options = node[:python][:source][:configure_options].join(" ")
 
 packages = value_for_platform(
-    ["centos","redhat","fedora"] => 
+    ["centos","redhat","fedora"] =>
         {"default" => ["openssl-devel","bzip2-devel","zlib-devel","expat-devel","db4-devel","sqlite-devel","ncurses-devel","readline-devel"]},
-    "default" => 
+    "default" =>
         ["libssl-dev","libbz2-dev","zlib1g-dev","libexpat1-dev","libdb4.8-dev","libsqlite3-dev","libncursesw5-dev","libncurses5-dev","libreadline-dev"]
   )
 
@@ -31,12 +31,12 @@ packages.each do |dev_pkg|
   package dev_pkg
 end
 
-version = node['python']['version']
-install_path = "#{node['python']['prefix_dir']}/lib/python#{version.split(/(^\d+\.\d+)/)[1]}"
+version = node[:python][:source][:version]
+install_path = "#{node[:python][:source][:prefix_dir]}/lib/python#{version.split(/(^\d+\.\d+)/)[1]}"
 
 remote_file "#{Chef::Config[:file_cache_path]}/Python-#{version}.tar.bz2" do
-  source "#{node['python']['url']}/#{version}/Python-#{version}.tar.bz2"
-  checksum node['python']['checksum']
+  source "#{node[:python][:source][:url]}/#{version}/Python-#{version}.tar.bz2"
+  checksum node[:python][:source][:checksum]
   mode "0644"
   not_if { ::File.exists?(install_path) }
 end

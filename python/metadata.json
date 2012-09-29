@@ -1,55 +1,126 @@
 {
+  "conflicting": {
+  },
+  "maintainer": "Opscode, Inc.",
+  "long_description": "",
+  "recipes": {
+    "python::virtualenv": "Installs virtualenv using the python_pip resource.",
+    "python::source": "Installs python from source.",
+    "python": "Installs python, pip, and virtualenv",
+    "python::package": "Installs python using packages.",
+    "python::pip": "Installs pip from source."
+  },
+  "dependencies": {
+    "build-essential": ">= 0.0.0"
+  },
   "attributes": {
+    "python/install_method": {
+      "calculated": false,
+      "recipes": [
+        "python::default"
+      ],
+      "display_name": "Install Method",
+      "default": "",
+      "choice": [
+        "package",
+        "source"
+      ],
+      "required": "required",
+      "type": "string",
+      "description": "The method to use when installing Python."
+    },
+    "python/source/checksum": {
+      "calculated": false,
+      "recipes": [
+        "python::source"
+      ],
+      "display_name": "Source Checksum",
+      "default": "c57477edd6d18bd9eeca2f21add73919",
+      "choice": [
+
+      ],
+      "required": "optional",
+      "type": "string",
+      "description": "The MD5 checksum of the specified Python source version."
+    },
+    "python/source/version": {
+      "calculated": false,
+      "recipes": [
+        "python::source"
+      ],
+      "display_name": "Source Version",
+      "default": "2.7.3",
+      "choice": [
+
+      ],
+      "required": "optional",
+      "type": "string",
+      "description": "The Python version to install. Specify using 2.7.3 format. Defaults to 2.7.3."
+    },
+    "python/pip/py_version": {
+      "calculated": false,
+      "recipes": [
+        "python::pip"
+      ],
+      "display_name": "PIP Install Python Version",
+      "default": "",
+      "choice": [
+
+      ],
+      "required": "recommended",
+      "type": "string",
+      "description": "The version of Python to use when installing PIP."
+    },
+    "python/source/prefix_dir": {
+      "calculated": false,
+      "recipes": [
+        "python::source"
+      ],
+      "display_name": "Source Prefix Directory",
+      "default": "/usr/local",
+      "choice": [
+
+      ],
+      "required": "optional",
+      "type": "string",
+      "description": "The path under which the specified version of Python should be installed."
+    },
+    "python/source/url": {
+      "calculated": false,
+      "recipes": [
+        "python::source"
+      ],
+      "display_name": "Source URL",
+      "default": "http://www.python.org/ftp/python",
+      "choice": [
+
+      ],
+      "required": "optional",
+      "type": "string",
+      "description": "The base URL to download Python from."
+    }
+  },
+  "license": "Apache 2.0",
+  "maintainer_email": "cookbooks@opscode.com",
+  "name": "python",
+  "recommendations": {
+  },
+  "replacing": {
+  },
+  "platforms": {
+    "ubuntu": ">= 0.0.0",
+    "debian": ">= 0.0.0",
+    "fedora": ">= 0.0.0",
+    "redhat": ">= 0.0.0",
+    "centos": ">= 0.0.0",
+    "freebsd": ">= 0.0.0"
   },
   "suggestions": {
   },
-  "conflicting": {
-  },
   "version": "1.0.6",
-  "dependencies": {
-    "build-essential": [
-
-    ]
-  },
-  "long_description": "",
-  "providing": {
-  },
-  "recipes": {
-    "python::source": "Installs python from source.",
-    "python::package": "Installs python using packages.",
-    "python::pip": "Installs pip from source.",
-    "python": "Installs python, pip, and virtualenv",
-    "python::virtualenv": "Installs virtualenv using the python_pip resource."
-  },
-  "platforms": {
-    "debian": [
-
-    ],
-    "fedora": [
-
-    ],
-    "centos": [
-
-    ],
-    "freebsd": [
-
-    ],
-    "ubuntu": [
-
-    ],
-    "redhat": [
-
-    ]
-  },
-  "maintainer": "Opscode, Inc.",
-  "replacing": {
-  },
-  "license": "Apache 2.0",
-  "description": "Installs Python, pip and virtualenv. Includes LWRPs for managing Python packages with `pip` and `virtualenv` isolated Python environments.",
-  "maintainer_email": "cookbooks@opscode.com",
-  "name": "python",
   "groupings": {
   },
-  "recommendations": {
-  }
+  "providing": {
+  },
+  "description": "Installs Python, pip and virtualenv. Includes LWRPs for managing Python packages with `pip` and `virtualenv` isolated Python environments."
 }
