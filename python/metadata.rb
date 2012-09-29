@@ -28,12 +28,20 @@ attribute "python/install_method",
     :choice => install_methods,
     :recipes => ["python::default"]
 
+grouping "python/pip",
+    :title => "PIP Install Settings",
+    :description => "Inputs for PIP install."
+
 attribute "python/pip/py_version",
-    :display_name => "PIP Install Python Version",
+    :display_name => "PIP Settings",
     :description => "The version of Python to use when installing PIP.",
     :required => "recommended",
     :default => "",
     :recipes => ["python::pip"]
+
+grouping "python/source",
+    :title => "Python Source Install Settings",
+    :description => "Settings to be used when installing Python from source."
 
 attribute "python/source/url",
     :display_name => "Source URL",
