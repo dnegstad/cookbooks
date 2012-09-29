@@ -1,22 +1,7 @@
 {
-  "replacing": {
-  },
-  "dependencies": {
-    "build-essential": ">= 0.0.0"
-  },
-  "maintainer_email": "cookbooks@opscode.com",
-  "recipes": {
-    "python::package": "Installs python using packages.",
-    "python": "Installs python, pip, and virtualenv",
-    "python::pip": "Installs pip from source.",
-    "python::virtualenv": "Installs virtualenv using the python_pip resource.",
-    "python::source": "Installs python from source."
-  },
-  "suggestions": {
-  },
-  "license": "Apache 2.0",
-  "providing": {
-  },
+  "version": "1.0.6",
+  "name": "python",
+  "long_description": "",
   "groupings": {
     "python/source": {
       "description": "Settings to be used when installing Python from source.",
@@ -27,107 +12,127 @@
       "title": "PIP Install Settings"
     }
   },
+  "conflicting": {
+  },
+  "suggestions": {
+  },
+  "platforms": {
+    "debian": ">= 0.0.0",
+    "redhat": ">= 0.0.0",
+    "fedora": ">= 0.0.0",
+    "freebsd": ">= 0.0.0",
+    "centos": ">= 0.0.0",
+    "ubuntu": ">= 0.0.0"
+  },
   "attributes": {
-    "python/pip/py_version": {
-      "calculated": false,
-      "recipes": [
-        "python::pip"
-      ],
+    "python/source/checksum": {
       "choice": [
 
       ],
+      "default": "c57477edd6d18bd9eeca2f21add73919",
+      "display_name": "Source Checksum",
       "type": "string",
-      "display_name": "PIP Settings",
-      "description": "The version of Python to use when installing PIP.",
+      "description": "The MD5 checksum of the specified Python source version.",
+      "required": "optional",
+      "recipes": [
+        "python::default",
+        "python::source"
+      ],
+      "calculated": false
+    },
+    "python/pip/py_version": {
+      "choice": [
+
+      ],
       "default": "",
-      "required": "recommended"
+      "display_name": "PIP Settings",
+      "type": "string",
+      "description": "The version of Python to use when installing PIP.",
+      "required": "recommended",
+      "recipes": [
+        "python::default",
+        "python::pip"
+      ],
+      "calculated": false
+    },
+    "python/source/version": {
+      "choice": [
+
+      ],
+      "default": "2.7.3",
+      "display_name": "Source Version",
+      "type": "string",
+      "description": "The Python version to install. Specify using 2.7.3 format. Defaults to 2.7.3.",
+      "required": "optional",
+      "recipes": [
+        "python::default",
+        "python::source"
+      ],
+      "calculated": false
+    },
+    "python/source/url": {
+      "choice": [
+
+      ],
+      "default": "http://www.python.org/ftp/python",
+      "display_name": "Source URL",
+      "type": "string",
+      "description": "The base URL to download Python from.",
+      "required": "optional",
+      "recipes": [
+        "python::default",
+        "python::source"
+      ],
+      "calculated": false
+    },
+    "python/source/prefix_dir": {
+      "choice": [
+
+      ],
+      "default": "/usr/local",
+      "display_name": "Source Prefix Directory",
+      "type": "string",
+      "description": "The path under which the specified version of Python should be installed.",
+      "required": "optional",
+      "recipes": [
+        "python::default",
+        "python::source"
+      ],
+      "calculated": false
     },
     "python/install_method": {
-      "calculated": false,
-      "recipes": [
-        "python::default"
-      ],
       "choice": [
         "package",
         "source"
       ],
-      "type": "string",
       "display_name": "Install Method",
+      "type": "string",
       "description": "The method to use when installing Python.",
-      "required": "required"
-    },
-    "python/source/prefix_dir": {
-      "calculated": false,
+      "required": "required",
       "recipes": [
-        "python::source"
+        "python::default"
       ],
-      "choice": [
-
-      ],
-      "type": "string",
-      "display_name": "Source Prefix Directory",
-      "description": "The path under which the specified version of Python should be installed.",
-      "default": "/usr/local",
-      "required": "optional"
-    },
-    "python/source/checksum": {
-      "calculated": false,
-      "recipes": [
-        "python::source"
-      ],
-      "choice": [
-
-      ],
-      "type": "string",
-      "display_name": "Source Checksum",
-      "description": "The MD5 checksum of the specified Python source version.",
-      "default": "c57477edd6d18bd9eeca2f21add73919",
-      "required": "optional"
-    },
-    "python/source/version": {
-      "calculated": false,
-      "recipes": [
-        "python::source"
-      ],
-      "choice": [
-
-      ],
-      "type": "string",
-      "display_name": "Source Version",
-      "description": "The Python version to install. Specify using 2.7.3 format. Defaults to 2.7.3.",
-      "default": "2.7.3",
-      "required": "optional"
-    },
-    "python/source/url": {
-      "calculated": false,
-      "recipes": [
-        "python::source"
-      ],
-      "choice": [
-
-      ],
-      "type": "string",
-      "display_name": "Source URL",
-      "description": "The base URL to download Python from.",
-      "default": "http://www.python.org/ftp/python",
-      "required": "optional"
+      "calculated": false
     }
   },
-  "maintainer": "Opscode, Inc.",
-  "long_description": "",
-  "platforms": {
-    "ubuntu": ">= 0.0.0",
-    "debian": ">= 0.0.0",
-    "centos": ">= 0.0.0",
-    "freebsd": ">= 0.0.0",
-    "redhat": ">= 0.0.0",
-    "fedora": ">= 0.0.0"
+  "replacing": {
+  },
+  "providing": {
   },
   "description": "Installs Python, pip and virtualenv. Includes LWRPs for managing Python packages with `pip` and `virtualenv` isolated Python environments.",
-  "version": "1.0.6",
-  "conflicting": {
+  "dependencies": {
+    "build-essential": ">= 0.0.0"
+  },
+  "license": "Apache 2.0",
+  "recipes": {
+    "python::pip": "Installs pip from source.",
+    "python::virtualenv": "Installs virtualenv using the python_pip resource.",
+    "python": "Installs python, pip, and virtualenv",
+    "python::source": "Installs python from source.",
+    "python::package": "Installs python using packages."
   },
   "recommendations": {
   },
-  "name": "python"
+  "maintainer_email": "cookbooks@opscode.com",
+  "maintainer": "Opscode, Inc."
 }

@@ -37,7 +37,7 @@ attribute "python/pip/py_version",
     :description => "The version of Python to use when installing PIP.",
     :required => "recommended",
     :default => "",
-    :recipes => ["python::pip"]
+    :recipes => ["python::default", "python::pip"]
 
 grouping "python/source",
     :title => "Python Source Install Settings",
@@ -48,25 +48,25 @@ attribute "python/source/url",
     :description => "The base URL to download Python from.",
     :required => "optional",
     :default => "http://www.python.org/ftp/python",
-    :recipes => ["python::source"]
+    :recipes => ["python::default", "python::source"]
 
 attribute "python/source/version",
     :display_name => "Source Version",
     :description => "The Python version to install. Specify using 2.7.3 format. Defaults to 2.7.3.",
     :required => "optional",
     :default => "2.7.3",
-    :recipes => ["python::source"]
+    :recipes => ["python::default", "python::source"]
 
 attribute "python/source/checksum",
     :display_name => "Source Checksum",
     :description => "The MD5 checksum of the specified Python source version.",
     :required => "optional",
     :default => "c57477edd6d18bd9eeca2f21add73919",
-    :recipes => ["python::source"]
+    :recipes => ["python::default", "python::source"]
 
 attribute "python/source/prefix_dir",
     :display_name => "Source Prefix Directory",
     :description => "The path under which the specified version of Python should be installed.",
     :required => "optional",
     :default => "/usr/local",
-    :recipes => ["python::source"]
+    :recipes => ["python::default", "python::source"]
